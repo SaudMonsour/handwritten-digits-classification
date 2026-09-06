@@ -1,0 +1,227 @@
+{
+  "task": "classification",
+  "primary_metric": "macro_f1",
+  "higher_is_better": true,
+  "selected_model": "Random forest",
+  "leaderboard": [
+    {
+      "model": "Random forest",
+      "cv_mean": 0.9700153371398917,
+      "cv_std": 0.004955378069725971,
+      "fold_scores": [
+        0.9664005676152989,
+        0.9666233239866658,
+        0.9770221198177105
+      ],
+      "selection_score": 0.9700153371398917
+    },
+    {
+      "model": "Neural network (64, 32)",
+      "cv_mean": 0.9656214948180436,
+      "cv_std": 0.0036130303931072444,
+      "fold_scores": [
+        0.962293484859563,
+        0.97064321408225,
+        0.9639277855123176
+      ],
+      "selection_score": 0.9656214948180436
+    },
+    {
+      "model": "Logistic regression",
+      "cv_mean": 0.9644142919507686,
+      "cv_std": 0.00354509483691434,
+      "fold_scores": [
+        0.9686352043716742,
+        0.9646467975102467,
+        0.9599608739703847
+      ],
+      "selection_score": 0.9644142919507686
+    },
+    {
+      "model": "Dummy baseline",
+      "cv_mean": 0.018331081210587852,
+      "cv_std": 0.00016229857789870183,
+      "fold_scores": [
+        0.018216318785578747,
+        0.018560606060606062,
+        0.018216318785578747
+      ],
+      "selection_score": 0.018331081210587852
+    }
+  ],
+  "test_metrics": {
+    "Random forest": {
+      "accuracy": 0.9666666666666667,
+      "macro_f1": 0.966126973788921,
+      "balanced_accuracy": 0.9661904761904762
+    },
+    "Dummy baseline": {
+      "accuracy": 0.1,
+      "macro_f1": 0.01818181818181818,
+      "balanced_accuracy": 0.1
+    }
+  },
+  "confidence_interval": {
+    "low": 0.9438260374615118,
+    "high": 0.9804789151362298,
+    "repeats": 200,
+    "method": "Percentile bootstrap on fixed-model holdout predictions; stratified by class for classification",
+    "limitation": "Conditional on this fitted model and split; excludes training/model-selection uncertainty"
+  },
+  "train_metrics": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "balanced_accuracy": 1.0
+  },
+  "train_rows": 1437,
+  "test_rows": 360,
+  "selection_used_test": false,
+  "warnings": [],
+  "parameters": {
+    "Dummy baseline": {
+      "constant": null,
+      "random_state": null,
+      "strategy": "most_frequent"
+    },
+    "Logistic regression": {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1500,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "Random forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "class_weight": null,
+      "criterion": "gini",
+      "max_depth": 14,
+      "max_features": "sqrt",
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 2,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 100,
+      "n_jobs": 1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "Neural network (64, 32)": {
+      "activation": "relu",
+      "alpha": 0.01,
+      "batch_size": "auto",
+      "beta_1": 0.9,
+      "beta_2": 0.999,
+      "early_stopping": false,
+      "epsilon": 1e-08,
+      "hidden_layer_sizes": [
+        64,
+        32
+      ],
+      "learning_rate": "constant",
+      "learning_rate_init": 0.001,
+      "max_fun": 15000,
+      "max_iter": 250,
+      "momentum": 0.9,
+      "n_iter_no_change": 10,
+      "nesterovs_momentum": true,
+      "power_t": 0.5,
+      "random_state": 42,
+      "shuffle": true,
+      "solver": "adam",
+      "tol": 0.0001,
+      "validation_fraction": 0.1,
+      "verbose": false,
+      "warm_start": false
+    }
+  },
+  "per_class": {
+    "0": {
+      "precision": 0.9722222222222222,
+      "recall": 0.9722222222222222,
+      "f1-score": 0.9722222222222222,
+      "support": 36.0
+    },
+    "1": {
+      "precision": 0.9210526315789473,
+      "recall": 0.9722222222222222,
+      "f1-score": 0.9459459459459459,
+      "support": 36.0
+    },
+    "2": {
+      "precision": 1.0,
+      "recall": 0.9714285714285714,
+      "f1-score": 0.9855072463768116,
+      "support": 35.0
+    },
+    "3": {
+      "precision": 0.9736842105263158,
+      "recall": 1.0,
+      "f1-score": 0.9866666666666667,
+      "support": 37.0
+    },
+    "4": {
+      "precision": 0.972972972972973,
+      "recall": 1.0,
+      "f1-score": 0.9863013698630136,
+      "support": 36.0
+    },
+    "5": {
+      "precision": 0.9736842105263158,
+      "recall": 1.0,
+      "f1-score": 0.9866666666666667,
+      "support": 37.0
+    },
+    "6": {
+      "precision": 1.0,
+      "recall": 0.9722222222222222,
+      "f1-score": 0.9859154929577465,
+      "support": 36.0
+    },
+    "7": {
+      "precision": 0.9230769230769231,
+      "recall": 1.0,
+      "f1-score": 0.96,
+      "support": 36.0
+    },
+    "8": {
+      "precision": 0.9375,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.8955223880597015,
+      "support": 35.0
+    },
+    "9": {
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "f1-score": 0.9565217391304348,
+      "support": 36.0
+    },
+    "accuracy": 0.9666666666666667,
+    "macro avg": {
+      "precision": 0.9674193170903698,
+      "recall": 0.9661904761904762,
+      "f1-score": 0.966126973788921,
+      "support": 360.0
+    },
+    "weighted avg": {
+      "precision": 0.9674467293710715,
+      "recall": 0.9666666666666667,
+      "f1-score": 0.9663833729525234,
+      "support": 360.0
+    }
+  }
+}
