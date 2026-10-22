@@ -1,58 +1,75 @@
-# تصنيف الأرقام المكتوبة باليد
+# Handwritten Digits Classification
 
-مقارنة نماذج لتمييز عشرة أرقام من 0 إلى 9 في صور رمادية بحجم 8 × 8 بكسل.
+Multi-class classification benchmark evaluating machine learning models on the 8x8 optical handwritten digits dataset.
 
-تضم البيانات 1,797 صورة و64 قيمة بكسل مرشحة. استخدم الاختبار المحفوظ 360 عينة، واختيرت الغابة العشوائية وفق التحقق المتقاطع الطبقي على التدريب.
+---
 
-تعرض الجداول أداء الغابة والشبكة العصبية والانحدار اللوجستي وخط الأساس. تحليل الأخطاء وأهمية البكسلات موجودان في ملفات الدراسة، وتبقى الدرجات مرتبطة بهذه الصور الصغيرة وتقسيمها.
+## Overview
 
-## النتائج المسجّلة
+* **Task:** Multi-class classification across 10 handwritten digits (0–9) using normalized pixel intensities.
+* **Dataset:** 1,797 grayscale samples ($8 \times 8$ resolution, 64 candidate features).
+* **Selected Model:** **Random Forest** (Holdout Macro F1 = 0.9661, Accuracy = 96.67%).
+* **Baseline Comparison:** Dummy baseline achieved Macro F1 = 0.0182 and Accuracy = 10.00%.
 
-الأرقام التالية من التنفيذ المحفوظ لهذه النسخة؛ لم تُعَد التجارب أثناء تعريب التوثيق.
+---
 
-### التحقق المتقاطع الطبقي
+## Key Results
 
-| النموذج | Macro F1 | الانحراف المعياري بين الطيات |
+Random Forest emerged as the top-performing model across stratified cross-validation and holdout splits.
+
+### Cross-Validation Performance (Stratified)
+
+| Model | Macro F1 | Fold SD |
 | :--- | :--- | :--- |
-| **الغابة العشوائية** | **0.9700** | 0.0050 |
-| شبكة عصبية (64, 32) | 0.9656 | 0.0036 |
-| الانحدار اللوجستي | 0.9644 | 0.0035 |
-| خط الأساس البسيط | 0.0183 | 0.0002 |
+| **Random Forest** | **0.9700** | 0.0050 |
+| Neural Network (64, 32) | 0.9656 | 0.0036 |
+| Logistic Regression | 0.9644 | 0.0035 |
+| Dummy Baseline | 0.0183 | 0.0002 |
 
-### التقييم على الاختبار المحفوظ (360 عينة)
+### Holdout Evaluation (360 Samples)
 
-| النموذج | الدقة | Macro F1 | الدقة المتوازنة |
+| Model | Accuracy | Macro F1 | Balanced Accuracy |
 | :--- | :--- | :--- | :--- |
-| **الغابة العشوائية** | **96.67%** | **0.9661** | **0.9662** |
-| خط الأساس البسيط | 10.00% | 0.0182 | 0.1000 |
+| **Random Forest** | **96.67%** | **0.9661** | **0.9662** |
+| Dummy Baseline | 10.00% | 0.0182 | 0.1000 |
 
-## الرسوم والنتائج المرئية
+> **95% Bootstrap CI for Macro F1:** 0.9438 – 0.9805 (200 stratified resamples).
 
-![رسم 1: أمثلة الأرقام والتوقعات](figures/digit-examples.png)
+---
 
-![رسم 2: مصفوفة الالتباس](figures/confusion-matrix.png)
+## Data Summary
 
-![رسم 3: مقارنة النماذج](figures/model-comparison.png)
+* **Source:** [UCI Optical Recognition of Handwritten Digits](https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits) (CC BY 4.0)
+* **Quality Check:** 1,797 samples, 64 features, 0 missing cells, 0 duplicates.
+* **Feature Importance:** `pixel_2_5` showed the largest mean permutation score drop (0.0249).
 
-![رسم 4: أهمية الخصائص](figures/feature-importance.png)
+---
 
-![رسم 5: جودة البيانات وتوازن الفئات](figures/data-quality.png)
+## Visualizations
 
-![رسم 6: توزيع القيم](figures/distributions.png)
+| Sample Predictions | Confusion Matrix |
+| :---: | :---: |
+| ![Digit Examples](figures/digit-examples.png) | ![Confusion Matrix](figures/confusion-matrix.png) |
 
-الرسوم محفوظة من التنفيذ الأصلي. تعريب هذه الصفحة لا يغيّر بياناتها أو تسميات الصور داخل الملفات.
+| Model Comparison | Feature Importance |
+| :---: | :---: |
+| ![Model Comparison](figures/model-comparison.png) | ![Feature Importance](figures/feature-importance.png) |
 
-## الملفات المرجعية
+| Data Quality & Target Distribution | Feature Distributions |
+| :---: | :---: |
+| ![Data Quality](figures/data-quality.png) | ![Distributions](figures/distributions.png) |
 
-- [مقاييس التقييم والنتائج](metrics.json).
-- [بيانات التدقيق وبيئة التنفيذ](audit.json).
-- [مصدر البيانات وشروط الترخيص](SOURCE.md).
-- [سجل أخطاء الاختبار](error_analysis.csv).
-- [دفتر شرح التحليل](analysis.ipynb).
-- [ملاحظات المراجعة البشرية](LEARNING_NOTES.md).
+---
 
-## المصادر والإسناد
+## Repository Structure
 
-- [مصدر 1: UCI Optical Recognition of Handwritten Digits](https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits).
-
-[المرجع التقني الإنجليزي الكامل](README.en.md) يحفظ تفاصيل النسخة الأصلية. تُترك أسماء الملفات والأوامر ومعرّفات النماذج والمقاييس بصيغتها التقنية لضمان تطابقها مع الكود.
+```text
+├── figures/                 # Confusion matrix, sample predictions, and diagnostic plots
+├── analysis.ipynb           # Walkthrough of model training and error inspection
+├── audit.json               # Pipeline environment specifications and data hashes
+├── data_dictionary.csv      # Feature map detailing pixel coordinates
+├── descriptive_statistics.csv # Summary distribution stats across all 64 pixels
+├── error_analysis.csv       # Predictions, ground truths, and holdout misclassifications
+├── feature_importance.csv   # Permutation importance rankings
+├── metrics.json             # Stratified CV and final holdout metric scores
+└── README.md
